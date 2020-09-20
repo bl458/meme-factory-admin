@@ -1,5 +1,4 @@
 import json
-from importlib.metadata import version
 import urllib.request
 
 
@@ -15,4 +14,4 @@ try:
     res = urllib.request.urlopen(req)
     print(res.read().decode('utf-8'))
 except Exception as err:
-    print('Error: ', err)
+    print('Admin login error: ', err)
