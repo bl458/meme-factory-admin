@@ -37,7 +37,10 @@ def upload_files_admin(files, session_token):
             for i in range(len(files)):
                 print(files[i], response.json()[i]['url'])
                 print()
+            print('Admin Image Upload: ', response.status_code)
         else:
-            print(files, response.json())
+            print(response.json())
+            print('Admin Image Upload: ', response.status_code)
+
     except Exception as err:
         print('Admin Image Upload Error: ', err)
