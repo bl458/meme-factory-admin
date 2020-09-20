@@ -2,16 +2,17 @@ import json
 import urllib.request
 
 
-url = 'http://localhost:3000/admin/session/'
-body = {"email": "byungchan9707@gmail.com", "pw": "test1234"}
+def login_admin(email, pw):
+    # Log in to new admin session
+    url = 'http://localhost:3000/admin/session/'
+    body = {"email": email, "pw": pw}
+    body = urllib.parse.urlencode(body).encode('ascii')  # body in bytes
 
+    req = urllib.request.Request(url, body)
 
-data = urllib.parse.urlencode(body)
-data = data.encode('ascii')  # data should be bytes
-req = urllib.request.Request(url, data)
-
-try:
-    res = urllib.request.urlopen(req)
-    print(res.read().decode('utf-8'))
-except Exception as err:
-    print('Admin login error: ', err)
+    try:
+        res = urllib.request.urlopen(req)
+        token = res.read().decode('utf-8')
+        return token
+    except Exception as err:
+        print('Admin login error: ', err)
