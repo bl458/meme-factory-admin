@@ -35,11 +35,11 @@ def upload_files_admin(files, session_token):
         response = requests.post(url, files=files_body, headers=headers)
         if response.status_code == 201:
             print('Admin Image Upload: 201')
-            print('Uploaded a total of',
-                  len(response.json()), 'images\n')
+            print('Uploaded',
+                  len(response.json()), 'out of', len(files), 'files\n')
         else:
-            print(response.json())
             print('Admin Image Upload: ', response.status_code)
+            print(response.json())
 
     except Exception as err:
         print('Admin Image Upload Error: ', err)
