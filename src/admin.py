@@ -31,13 +31,12 @@ def upload_files_admin(files, session_token):
             file, 'rb'), 'image/' + file_ext)))
 
     try:
+        print('\nStarted Admin Image Upload. Check js console for details\n')
         response = requests.post(url, files=files_body, headers=headers)
         if response.status_code == 201:
-            print()
-            for i in range(len(files)):
-                print(files[i], response.json()[i]['url'])
-                print()
-            print('Admin Image Upload: ', response.status_code)
+            print('Admin Image Upload: 201')
+            print('Uploaded a total of',
+                  len(response.json()), 'images\n')
         else:
             print(response.json())
             print('Admin Image Upload: ', response.status_code)
