@@ -1,12 +1,13 @@
 import json
 import urllib.request
 import requests
+from constants import API_URL
 from os import path
 
 
 # Log in to new admin session
 def login_admin(email, pw):
-    url = 'http://localhost:3000/admin/session'
+    url = API_URL + '/admin/session'
     body = {"email": email, "pw": pw}
 
     try:
@@ -20,7 +21,7 @@ def login_admin(email, pw):
 
 # Upload image files
 def upload_files_admin(files, session_token):
-    url = 'http://localhost:3000/admin/images'
+    url = API_URL + '/admin/images'
     headers = {'api-token': session_token}
     files_body = []
 
